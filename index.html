@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    
+
+    <div id="app">
+        <div class="product">
+
+            <div class="product-image">
+                <img v-bind:src="image" alt="" srcset="">
+                
+
+            </div>
+
+            <div class="product-info ">
+                <h1 style="margin-top: 10%;font-size:xx-large; color:#25955a ;">{{ title }}</h1>
+                <p v-show="inStock" style="margin-top: 10%; font-size: x-large;">In Stock</p>
+                
+                <ul style="list-style: none;" class="">
+                    <li v-for="detail in details" style="line-height: 30px; font-size: larger;">{{ detail }}</li>
+                
+                
+                <div class="row">
+                    <div v-for="variant in variants"
+                    :key="variant.variantId"
+                    class="color-box"
+                    :style="{ backgroundColor: variant.variantColor}"
+                    @mouseover="updateProduct(variant.variantImage)">
+                </div>
+               </div>
+                </ul>
+
+
+                <button type="button" @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock}" style="background-color: white;opacity: 70%;margin-top: 20px; background-color: #25955a;"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></button>
+
+                <div class="cart">
+                    <button>Cart ({{cart}})</button>
+                </div>
+
+                <button @click="removeToCart" style="background-color: white;opacity: 70%; background-color: salmon;"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
